@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<h1>Michał Radzik</h1>
+<p>Lista cars</p>
+
+<table border="1" style="width:300px">
+    <thead>
+    <tr>
+        <p>
+        <th> Id</th>
+        </p>
+        <p>
+        <th> Marka</th>
+        </p>
+        <p>
+        <th> Model</th>
+        </p>
+        <p>
+        <th> Kolor</th>
+        </p>
+        <p>
+        <th> Rok produkcji</th>
+        </p>
+
+    </tr>
+
+    </thead>
+    <tbody>
+
+    <tr th:each="car : ${cars}">
+        <td align="center"><span th:text="${car.getId()}"></span></td>
+        <td align="center"><span th:text="${car.getMark()}"></span></td>
+        <td align="center"><span th:text="${car.getModel()}"></span></td>
+        <td align="center"><span th:text="${car.getColor()}"></span></td>
+        <td align="center"><span th:text="${car.getYear()}"></span></td>
+
+    </tr>
+</table>
+
+<form action="#" th:action="@{/carFilter}" th:method="post" th:object="${carFilter}">
+    <p>Rok produkcji od: <input type="text" th:field="*{yearFrom}"></p>
+    <p>Rok produkcji do: <input type="text" th:field="*{yearTo}"></p>
+    <p><input type="submit" value="Find Car"></p>
+</form>
+<form action="#" th:action="@{/newCar}" th:method="post" th:object="${newCar}">
+    <p>Mark: <input type="text" th:field="*{mark}"></p>
+    <p>Model: <input type="text" th:field="*{model}"></p>
+    <p>Color: <input type="text" th:field="*{color}"></p>
+    <p>Rok produkcji: <input type="text" th:field="*{year}"></p>
+    <p><input type="submit" value="add new car"></p>
+</form>
+</tbody>
+
+</body>
+</html>
